@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sprouts · 萌芽游戏</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">GRAPH THEORY · FOUR LEVELS</p>
+        <h1>Sprouts · 萌芽游戏</h1>
+        <p class="subtitle">选择两个端点和一个新点位置，组成可绕开障碍的折线。</p>
+      </div>
+      <div class="header-actions">
+        <button id="undo-button" class="secondary-button" type="button" disabled>撤回</button>
+        <button id="reset-button" class="secondary-button" type="button">重新开始</button>
+      </div>
+    </header>
+
+    <section class="rules-panel">
+      <span class="rule-chip">每个点最多连接 3 次</span>
+      <span class="rule-chip">线段不能相交或重合</span>
+      <span class="rule-chip">三次点击决定一条折线</span>
+      <span class="rule-chip">A 先手，B 后手</span>
+    </section>
+
+    <section class="board-card">
+      <div class="board-topline">
+        <div>
+          <strong id="level-title">第 1 关：三点萌芽</strong>
+          <span id="status-text">当前回合：A，请选择第一个点</span>
+        </div>
+        <div class="move-counter">已走 <span id="move-count">0</span> 步</div>
+        <div id="turn-indicator" class="turn-indicator turn-a" aria-live="polite">
+          <span>当前行动</span>
+          <strong id="current-player">A</strong>
+        </div>
+      </div>
+      <canvas id="game-canvas" width="900" height="560" aria-label="Sprouts 游戏棋盘"></canvas>
+      <div class="board-actions">
+        <div class="board-actions-left">
+          <button id="no-move-button" class="secondary-button" type="button">检查我是否无路可走</button>
+        </div>
+      </div>
+      <div id="message" class="message" role="status"></div>
+    </section>
+
+    <section class="levels-panel">
+      <strong>选择关卡</strong>
+      <div class="level-buttons" role="group" aria-label="选择关卡">
+        <button class="level-button active" data-level="0" type="button">1 · 3 点</button>
+        <button class="level-button" data-level="1" type="button">2 · 4 点</button>
+        <button class="level-button" data-level="2" type="button">3 · 5 点</button>
+        <button class="level-button" data-level="3" type="button">4 · 6 点</button>
+      </div>
+    </section>
+
+    <section class="help-panel">
+      <h2>怎么玩</h2>
+      <ol>
+        <li>依次点击起点、终点，再点击空白处放置新点。</li>
+        <li>起点—新点—终点组成一条折线，可以绕开已有结构。</li>
+        <li>如果折线穿过节点、与旧线相交或重合，这一步会被拒绝。</li>
+        <li>A、B 轮流操作；轮到某位玩家却无法进行合法连线时，另一位玩家获胜。</li>
+      </ol>
+    </section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
+
